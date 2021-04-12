@@ -1,0 +1,11 @@
+http://localhost:3000//admin/deletecar
+Content-Type: application/json
+
+{
+    "cartype":"Hatchback",
+    "carname":"Santro",
+    "carcolour":"Silver",
+     "numberofseats":"11",
+     "overalllength":"1300mm",
+     "overallheight":"1200mm"
+}

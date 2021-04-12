@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       
+        <ul class="navbar-nav mx-auto">
+    
+          <li class="nav-item" >
+            <a class="nav-link" style="color:#165baa;font-size: 22px; font-weight: bold;" 
+            routerLink="/justallcars">All car models</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " style="color:#165baa;font-size: 22px; font-weight: bold;" 
+            routerLink="/hatchback" routerLinkActive="active">Hatchback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " style="color:#165baa;font-size: 22px; font-weight: bold;" 
+            routerLink="/sedan" routerLinkActive="active">Sedan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " style="color:#165baa;font-size: 22px ;font-weight: bold;" 
+            routerLink="/suv" routerLinkActive="active">SUV</a>
+          </li>
+   
+      </ul>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>

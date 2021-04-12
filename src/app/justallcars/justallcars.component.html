@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row row-cols-md-3 row-cols-sm-2 row-cols-2 g-3 g-md-5">
+        <div class="col" *ngFor="let car of carobj"> 
+           
+       <div  class="card" *ngIf="car.status">
+         <div class="card-body bg-dark">      
+          <img [src]="car.carimage" alt="" width="300px" height="200px">  
+          <h3 style="color: blanchedalmond; text-align: center;">{{car.carname}}</h3>
+         
+         </div>
+       </div>
+        </div>
+       </div>
+</div>

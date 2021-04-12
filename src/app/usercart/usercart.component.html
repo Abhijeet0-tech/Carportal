@@ -1,0 +1,41 @@
+<div class="container-sm">
+       
+        <table class="table table-bordered bg-light text-center">
+          <thead class=" text-white" style="background-color: rgb(102, 123, 145);">
+            <th>Car Image</th>
+           <th>Car Name</th>
+           <th>Car Type</th>
+           <th>Quantity</th>
+           <th>Car Price</th>
+           <th>Delete</th>
+           
+          </thead>
+          <tr *ngFor="let car of usercartallcars " class="fw-bold">
+            <td ><img [src]="car.carimage" class="img-fluid" alt="" width="100%" height="100px"> 
+            </td>
+            <td >{{car.carname}}</td>
+            <td >{{car.cartype}}</td>
+            <td>
+              <div class="row">
+                <div class="col-sm-12 d-flex">
+                  <button type="button"  class="minus bg-danger m-2" (click)="minus(car)" style="font-weight: bold; ">-</button>
+                  <h2 style="color:black; ">{{car.quantity}}</h2>
+                <button type="button" class="minus bg-success m-2" (click)="plus(car)" style="font-weight: bold; ">+</button>
+                </div>
+               
+        </div>
+       </td>
+       <td>{{car.carprice}}</td>
+       <td><button (click)="remove(car)" class="btn text-white mx-2" style="background-color: rgb(189, 51, 51);" > 
+      
+        <i class="fa fa-trash" ></i>
+      </button></td>
+          </tr>
+        </table>
+        <h3 style="color:rgb(4, 0, 255); margin-top: 10px; float: right ; text-align: right;  ">  Total price : {{sum}}</h3>
+
+    <div style=" margin-top: 100px; " class="mb-5 text-center " >
+      <button type="submit" class="btn p-3 text-white rounded-1 mx-auto" 
+      style="background-color: #f3a406;width: 250px; height: 60px;" (click)="onSubmit()">Proceed to pay</button>
+      </div>
+</div>
