@@ -18,7 +18,7 @@ carobj:any
   ngOnInit(): void {
        this.carobj=this.us.sendeditcar()
   }
-  onSubmit(ref:any)
+  onSubmit()
   {
       this.us.updatecar(this.carobj).subscribe()
       this.toast.success("your changes has been saved successfully")

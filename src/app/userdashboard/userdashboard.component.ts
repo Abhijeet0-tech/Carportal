@@ -92,7 +92,7 @@ export class UserdashboardComponent implements OnInit {
     
     }
     cart(){
-      this.route.navigateByUrl("/usercart")
+      this.route.navigateByUrl("/userdashboard/usercart")
     }
     navigateToSpecifications(car:any){
       console.log(car)

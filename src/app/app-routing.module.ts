@@ -52,15 +52,13 @@ const routes: Routes = [
   
   {path:"admindashboard",component:AdmindashboardComponent,children:[
     {path:"addcar",component:AdminComponent},
-    {path:"allcarsaddedbyadmin",component:AllcarsaddedbyadminComponent,children:[
+    {path:"allcarsaddedbyadmin",component:AllcarsaddedbyadminComponent},
       {path:"editcar",component:EditcarComponent},
-    ]},
     {path:"",redirectTo:"allcarsaddedbyadmin",pathMatch:"full"}
   ]},
   {path:"specifications/:carname",component:SpecificationsComponent},
   {path:"allcar",component:AllcarComponent},
   {path:"justallcars",component:JustallcarsComponent},
-  {path:"usercart",component:UsercartComponent},
   {path:"addtocart",component:UsercartComponent},
   {path:"",redirectTo:"home",pathMatch:"full"},
   {path:"search",component:SearchComponent},

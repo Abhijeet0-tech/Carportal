@@ -14,6 +14,7 @@ export class AllcarsaddedbyadminComponent implements OnInit {
   carcopyobj:any=[]
  car:any
  cardelete:any
+ emptycardata:any
  i=0;
   constructor(private us:UserserviceService ,private route:Router) { }
   
@@ -21,6 +22,7 @@ export class AllcarsaddedbyadminComponent implements OnInit {
   this.us.getcar().subscribe(
     res=>{
       this.carobj=res["message"]
+      this.emptycardata=this.carobj.length
       
     },
     err=>{
@@ -37,7 +39,7 @@ onSubmit(){
 Edit(ref:any){
        this.car=ref
       this.us.editcar(ref)
-      this.route.navigateByUrl("/editcar")     
+      this.route.navigateByUrl("/admindashboard/editcar")     
 }
 
 Delete(ref:any)

@@ -19,13 +19,13 @@ const { updateOne, update } = require("../models/userschema");
 // create user
 userApiObj.post("/createuser",eah( async(req,res)=>{
    
+    console.log(req.body)
+
+  
     
-
-    let hashedPassword=await bcryptjs.hash(req.body.password,7)
-
-
     let userobj = await User.findOne({username:req.body.username})
     if(userobj==null){
+        let hashedPassword=await bcryptjs.hash(req.body.password,7)
         let newuserobj=  new User({
         username:req.body.username,
         password:hashedPassword,
@@ -49,23 +49,24 @@ userApiObj.post("/createuser",eah( async(req,res)=>{
 // login user
 userApiObj.post("/loginuser",eah(async(req,res)=>{
 
-    
+    console.log("req.body",req.body)
     let userobj = await User.findOne({username:req.body.username})
-    console.log(userobj)
+    console.log("userobj",userobj)
      if(userobj!=null)
      {
-         if(await (userobj.password==req.body.password))
+       let result= await bcryptjs.compare(req.body.password,userobj.password)
+       console.log("result",result)
+         if(result==false)
          {
-
+            res.send({message:"user credentials are wrong"})
+         }
+         else
+         {
              //  create a json token and sign it                 
              let signedToken= await jwt.sign({username:req.body.username},"cpaass",{expiresIn: 1000})
 
              // send signed token to the client
                  res.send({message:"You are successfully logged",token:signedToken,username:req.body.username})
-         }
-         else
-         {
-            res.send({message:"user credentials are wrong"})
          }
      }
      else
