@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CartserviceService } from '../cartservice.service';
 import { UserserviceService } from '../userservice.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserserviceService } from '../userservice.service';
 })
 export class HatchbackComponent implements OnInit {
 hatchbackcars:any=[]
-  constructor(private us:UserserviceService,private route:Router,private toast:ToastrService) { }
+  constructor(private us:UserserviceService,private route:Router,private toast:ToastrService,private cs:CartserviceService) { }
   userobj:any
   emptyhatchback:any
   username:any
@@ -47,6 +48,7 @@ hatchbackcars:any=[]
         console.log(err)
       }
     )
+    this.cartcount=this.cs.getCartcount()
 }
 
 logout()
@@ -60,10 +62,7 @@ this.us.addToCart(car).subscribe(
   res=>{
     if(res["message"]=="car added to cart successfully"){
             this.toast.success("car added to cart successfully")
-            this.us.getx().subscribe(valueofX=>this.x=valueofX)                 
-           console.log(this.x)
-           this.userobj.cartcount=++this.x  
-           this.us.updateCartCount(this.userobj).subscribe()               
+            this.cs.setCartcount(++this.cartcount)             
           }
     else{
       this.toast.error(res["message"])

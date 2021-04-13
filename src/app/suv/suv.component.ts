@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CartserviceService } from '../cartservice.service';
 import { UserserviceService } from '../userservice.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class SuvComponent implements OnInit {
   searchTerm!: string;
   cartcount:any
   x=0
-    constructor(private us:UserserviceService,private route:Router,private toast:ToastrService) {}
+    constructor(private us:UserserviceService,private route:Router,private toast:ToastrService,private cs:CartserviceService) {}
   
     ngOnInit(): void {
           this.username=(localStorage.getItem("username"))
@@ -47,6 +48,7 @@ export class SuvComponent implements OnInit {
               console.log(err)
             }
           )
+          this.cartcount=this.cs.getCartcount()
     }
 
     logout()
@@ -60,11 +62,7 @@ export class SuvComponent implements OnInit {
         res=>{
           if(res["message"]=="car added to cart successfully"){
                   this.toast.success("car added to cart successfully")
-                  this.us.getx().subscribe(valueofX=>this.x=valueofX)   
-                //  this.us.setplusX()                 
-                 console.log(this.x)
-                 this.userobj.cartcount=++this.x  
-                 this.us.updateCartCount(this.userobj).subscribe()               
+                  this.cs.setCartcount(++this.cartcount)              
                 }
           else{
             this.toast.error(res["message"])
