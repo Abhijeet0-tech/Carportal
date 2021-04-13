@@ -111,10 +111,6 @@ plus(car:any){
  for(let i=0;i<this.usercartallcars.length;i++){
    this.sum= this.sum + this.usercartallcars[i].carprice
  }
-  
-     
-
-
 }
 onSubmit(){
   this.route.navigateByUrl("/userdashboard/payment")

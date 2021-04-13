@@ -37,15 +37,15 @@ export class RegisterComponent implements OnInit {
         this.us.createuser(this.registerForm.value).subscribe(
           res=>{
             if(res["message"]=="User created successfully"){
-               this.toastr.success('user successfully registered','title')
+               this.toastr.success('user successfully registered')
               this.route.navigateByUrl("/login")
             }
             else{
-              this.toastr.warning('user details are already existed','title')
+              this.toastr.warning('user details are already existed')
             }
           },
           err=>{
-            this.toastr.error('user registration failed','title')
+            this.toastr.error('user registration failed')
             console.log(err)
           }
         )
