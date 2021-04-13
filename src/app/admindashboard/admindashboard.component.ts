@@ -10,10 +10,14 @@ import { UserserviceService } from '../userservice.service';
 export class AdmindashboardComponent implements OnInit {
 
  
-  constructor() { }
+  constructor(private route:Router) { }
   
   ngOnInit(): void {
   
+}
+logout(){
+   localStorage.clear()
+   this.route.navigateByUrl("/login")
 }
 
 

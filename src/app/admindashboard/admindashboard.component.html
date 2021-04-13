@@ -1,84 +1,27 @@
-<!-- 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-            <h3>Welcome admin</h3>
-    </div>
-  
-   <div class="row" style="text-align: center; justify-content: center;margin-top: 100px;">
-    <div class="col-sm-6">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto">
-      
-              <li class="nav-item" >
-                <a class="nav-link" style="color:rgb(123,156,2);font-size: 22px; font-weight: bold;"
-                 routerLink="/admin">AddCar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " style="color:rgb(123,156,2);font-size: 22px; font-weight: bold;" 
-                routerLink="/allcarsaddedbyadmin" 
-                routerLinkActive="active">ViewCars</a>
-              </li>     
-          </ul> 
-                   
-          </div>
-        </div>
-      </nav>
-    </div>
-   </div>
-  </div>
-</div>
-
-<div style="margin-top: 500px;">
-
-</div> --> -->
-
-
-
-
-<div class="c">
-  <div class="container">
-    <nav >
+   <div>
+    <nav style="background-color: rgb(255, 188, 5);">
       <div class="row">
-        <div class="col-sm-10 col-lg-4 scale-in-center" >
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item" >
-              <a class="nav-link" style="color:rgb(0, 0, 0);font-size: 24px;font-weight: bold;" routerLink="/admin">
-               
-                <i class="fa fa-caret-right"></i> Add cars
-                  
-              </a>
-            </li>
-    
+        <div class="col-6">
+          <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link " style="color:rgb(0, 0, 0);font-size: 24px;font-weight: bold;" 
-              routerLink="/allcarsaddedbyadmin" routerLinkActive="active">
-                <i class="fa fa-caret-right"></i> View cars
-                
-                </a>
+              <a class="nav-link" style="font-size: 22px; font-weight: bold;"  routerLink="/admindashboard/allcarsaddedbyadmin">View cars</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " style="color:rgb(123,156,2);font-size: 22px;
-               font-weight: bold; padding-left: 200px;" routerLink="/home" routerLinkActive="active">
-                   <button class="bg bg-danger" style="margin-left: 90%;">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  </button>
-              </a>
-            </li>         
-
-            
-            
-        </ul>
+              <a class="nav-link" style="font-size: 22px; font-weight: bold;"  routerLink="/admindashboard/addcar">Add cars</a>
+            </li>
+          </ul>
         </div>
-        <div class="col-sm-2 col-lg-8"></div>
-       
+        <div class="col-6">
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link " style="color:#aa1616;font-size: 22px; font-weight: bold;"
+               routerLinkActive="active" (click)="logout()"><i class="fa fa-sign-out"></i></a>
+            </li>
+          </ul>
+        </div>
       </div>
-     
-  </nav>
+    </nav>
   </div>
+   
+  <router-outlet></router-outlet>
   

@@ -50,23 +50,21 @@ else{
 // get cars from cart
 usercartApiObj.get("/getcarsfromcart/:username",eah(async(req,res)=>{
     
-    console.log(this.username)
+    console.log("username for cartcount",req.params.username)
    let cartcars= await Usercart.find({username:req.params.username})
-   console.log("cartcars",cartcars)
+ console.log("cart retrival",cartcars)
+ console.log("length",cartcars.length)
    let carsarray=[]
-   for(i=0;i<cartcars.length;i++){
-        let success= await Admincart.findOne({$and:[{carid:cartcars[i].carid},{status:true}]})
-        
-        if(success!=null)
-        {
-            let success2= await Usercart.findOne({$and:[{username:req.params.username},{carid:cartcars[i].carid}]})
-            console.log("success2 ",success2)
-
-            // push into array
-            carsarray.push(success2)
-        }
+   for(let i of cartcars){
+       let success = await Admincart.findOne({$and:[{carid:i.carid},{status:true}]})
+       //console.log("success",success)
+       if(success!=null){
+           let success2= await Usercart.findOne({$and:[{username:req.params.username},{carid:i.carid}]})
+           console.log("success",success2)
+           carsarray.push(success2)
+       }
    }
-   console.log("carsarray",carsarray)
+  console.log("carsarray",carsarray)
    res.send({message:carsarray})
 
 }))
@@ -91,7 +89,7 @@ usercartApiObj.post("/deletecar",eah(async(req,res)=>{
 usercartApiObj.put("/updatecar",eah(async(req,res)=>{
     console.log("usercar request body",req.body)
     let success = await Usercart.updateOne({$and:[{username:req.body.username},{carid:req.body.carid}]},
-        {quantity:req.body.quantity},{carprice:req.body.carprice})
+        {quantity:req.body.quantity,carprice:req.body.carprice})
         console.log("quantity and price updated",success)
      
     
@@ -100,11 +98,26 @@ usercartApiObj.put("/updatecar",eah(async(req,res)=>{
 // get cart count
 usercartApiObj.get("/getcartcount/:username",eah(async(req,res)=>{
     let success = await Usercart.find({username:req.params.username})
+     //console.log("length",success.length)
+    //console.log("cartcars for cart count",success)
+    let carsarray=[]
+    for(i=0;i<success.length;i++){
+         let success1= await Admincart.findOne({$and:[{carid:success[i].carid},{status:true}]})
+         
+         if(success1!=null)
+         {
+             let success2= await Usercart.findOne({$and:[{username:req.params.username},{carid:success[i].carid}]})
+            
+ 
+             // push into array
+             carsarray.push(success2)
+         }
+    }
+   
     let count= 0
-    for(let i of success){
+    for(let i of carsarray){
         count = count + i.quantity
     }
-    console.log(count)
     res.send({message:count})
     
 }))

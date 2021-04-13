@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserserviceService } from '../userservice.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AdminComponent implements OnInit {
   file: any;
   carobj:any
 
-  constructor(private us:UserserviceService,private route:Router) { }
+  constructor(private us:UserserviceService,private route:Router, private toast:ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -32,16 +33,16 @@ export class AdminComponent implements OnInit {
     this.us.createcar(this.formData).subscribe(
       res=>{
         if(res["message"]=="car added successfully"){
-          alert(res["message"])
+        this.toast.success("car added successfully")
           this.route.navigateByUrl("/admindashboard")
         }
         else{
-          alert("car not added successfully")
+           this.toast.warning("car id already exists ... choose other id")
         }
       },
       err=>{
         console.log(err)
-        alert("something went wrong")
+        this.toast.error("Something went wrong")
       }
     )
   }

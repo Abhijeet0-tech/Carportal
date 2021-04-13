@@ -24,9 +24,16 @@ export class SpecificationsComponent implements OnInit {
       this.state = (this.state === 'default' ? 'rotated' : 'default');
   }
   carobjs:any;
+  username:any
+  x=true
   constructor(private us:UserserviceService,private ar:ActivatedRoute,private route:Router) { }
   
   ngOnInit(): void {
+ this.username=localStorage.getItem("username")
+ console.log(this.username)
+ if(this.username!=null){
+         this.x=false
+ }
   this.ar.params.subscribe(
     params=>{
       console.log("params",params)

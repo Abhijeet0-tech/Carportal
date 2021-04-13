@@ -12,6 +12,7 @@ export class HatchbackComponent implements OnInit {
 hatchbackcars:any=[]
   constructor(private us:UserserviceService,private route:Router,private toast:ToastrService) { }
   userobj:any
+  emptyhatchback:any
   username:any
   carobj:any=[]
   searchTerm!: string;
@@ -28,6 +29,7 @@ hatchbackcars:any=[]
           this.us.gethatchback().subscribe(
             res=>{
               this.carobj=res["message"]
+              this.emptyhatchback=this.carobj.length
             },
             err=>{
               alert("retrive failed")
@@ -58,8 +60,7 @@ this.us.addToCart(car).subscribe(
   res=>{
     if(res["message"]=="car added to cart successfully"){
             this.toast.success("car added to cart successfully")
-            this.us.getx().subscribe(valueofX=>this.x=valueofX)   
-            //this.us.setplusX()                 
+            this.us.getx().subscribe(valueofX=>this.x=valueofX)                 
            console.log(this.x)
            this.userobj.cartcount=++this.x  
            this.us.updateCartCount(this.userobj).subscribe()               

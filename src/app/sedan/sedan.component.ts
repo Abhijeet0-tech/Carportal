@@ -11,6 +11,7 @@ import { UserserviceService } from '../userservice.service';
 export class SedanComponent implements OnInit {
 
   userobj:any
+  emptysedan:any
   username:any
   carobj:any=[]
   searchTerm!: string;
@@ -28,6 +29,7 @@ export class SedanComponent implements OnInit {
             this.us.getsedan().subscribe(
               res=>{
                 this.carobj=res["message"]
+                this.emptysedan=this.carobj.length
               },
               err=>{
                 alert("retrive failed")

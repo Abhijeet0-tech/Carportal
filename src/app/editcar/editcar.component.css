@@ -1,0 +1,13 @@
+.vv{
+    width:100%;
+    height:auto;
+    background-image: url("https://cdn.wallpapersafari.com/77/87/SC84PQ.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 100%;   
+}
+@media screen and (max-width:795px){
+   
+    button{
+        margin:5px 0px;
+     }
+ }

@@ -60,7 +60,7 @@ sendeditcar(){
   return this.carobj
 }
 
-updatecar(carobj:any):Observable<any>{
+updatecart(carobj:any):Observable<any>{
  
   console.log(carobj)
    return this.hc.put("/usercart/updatecar",carobj)
@@ -158,8 +158,9 @@ updateCartCount(user:any):Observable<any>{
 }
 
 // update car after editing
-updatecarafteredit(car:any):Observable<any>{
- return this.hc.put("/admin/updatecarafteredit",car)
+updatecar(carobj:any):Observable<any>{
+  console.log(carobj)
+ return this.hc.put("/admin/updatecar",carobj)
 }
 
 // update carcount from usercart

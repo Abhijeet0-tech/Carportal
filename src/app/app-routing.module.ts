@@ -40,26 +40,31 @@ const routes: Routes = [
   {path:"drivingtips",component:DrivingtipsComponent},
   {path:"maintenance",component:MaintenanceComponent},
   {path:"roadsideassistance",component:RoadsideassistanceComponent},
-  {path:"userdashboard",component:UserdashboardComponent},
-  {path:"admin",component:AdminComponent},
-  {path:"admindashboard",component:AdmindashboardComponent},
+  {path:"userdashboard",component:UserdashboardComponent,children:[
+    {path:"hatchback",component:HatchbackComponent},
+    {path:"SUV",component:SuvComponent},
+    {path:"Sedan",component:SedanComponent},
+    {path:"allmodels",component:AllmodelsComponent},
+    {path:"usercart",component:UsercartComponent},
+    {path:"payment",component:PaymentComponent},
+    {path:"",redirectTo:"allmodels",pathMatch:"full"}
+  ]},
+  
+  {path:"admindashboard",component:AdmindashboardComponent,children:[
+    {path:"addcar",component:AdminComponent},
+    {path:"allcarsaddedbyadmin",component:AllcarsaddedbyadminComponent,children:[
+      {path:"editcar",component:EditcarComponent},
+    ]},
+    {path:"",redirectTo:"allcarsaddedbyadmin",pathMatch:"full"}
+  ]},
   {path:"specifications/:carname",component:SpecificationsComponent},
-  {path:"allcarsaddedbyadmin",component:AllcarsaddedbyadminComponent},
-  {path:"editcar",component:EditcarComponent},
   {path:"allcar",component:AllcarComponent},
   {path:"justallcars",component:JustallcarsComponent},
   {path:"usercart",component:UsercartComponent},
   {path:"addtocart",component:UsercartComponent},
   {path:"",redirectTo:"home",pathMatch:"full"},
-  {path:"payment",component:PaymentComponent},
   {path:"search",component:SearchComponent},
-  {path:"userdashboard",component:UserdashboardComponent},
-    {path:"allmodels",component:AllmodelsComponent},
-    {path:"usercart",component:UsercartComponent},
-    {path:"hatchback",component:HatchbackComponent},
-    {path:"SUV",component:SuvComponent},
-    {path:"Sedan",component:SedanComponent},
-    {path:"",redirectTo:"allmodels",pathMatch:"full"}
+    
 ];
 
 @NgModule({

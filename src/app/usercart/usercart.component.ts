@@ -20,41 +20,19 @@ carobj:any
 car:any
 sum:any
 cartcount:any
+emptycart:any
   constructor(private us:UserserviceService, private route:Router ,private cs:CartserviceService) { }
 
   ngOnInit(): void {
     
     this.username=localStorage.getItem("username")
     console.log(this.username)
-    this.us.getuserbyusername(this.username).subscribe(
-      res=>{
-        if(res["message"]=="success"){
-          this.userobj=res["userobj"]
-          this.us.getcar().subscribe(
-            res=>{
-              this.carobj=res["message"]
-            },
-            err=>{
-              alert("retrive failed")
-              console.log(err)
-            }
-          )
-        }
-        else{
-          alert(res["message"])
-          this.route.navigateByUrl("/login")
-        }
-      },
-      err=>{
-        alert("something went wrong")
-        console.log(err)
-      }
-    )
     this.us.getUsercartcars(this.username).subscribe(
       res=>{
         this.usercartallcars=res["message"]
         console.log(this.usercartallcars)
-      
+        this.emptycart=this.usercartallcars.length
+        console.log(this.emptycart)
         this.sum=0
         for(this.i=0;this.i<this.usercartallcars.length;this.i++){         
           this.sum =  this.sum + this.usercartallcars[this.i].carprice
@@ -81,6 +59,7 @@ cartcount:any
              res=>{
             if(res["message"]=="success"){
                this.usercartallcars=res["carsarray"]
+
                console.log(this.usercartallcars)
                console.log(this.cartcount)
                 this.cs.setCartcount(--this.cartcount)
@@ -109,7 +88,7 @@ cartcount:any
       console.log("for minus",this.cartcount)
       this.cs.setCartcount(this.cartcount--)
     }
-    this.us.updatecar(car).subscribe()
+    this.us.updatecart(car).subscribe()
     this.sum=0
     for(let i=0;i<this.usercartallcars.length;i++){
       this.sum= this.sum + this.usercartallcars[i].carprice
@@ -124,7 +103,7 @@ plus(car:any){
   console.log(car.quantity)
   car.carprice=(car.quantity*car.carprice)
   console.log(car.carprice)
-  this.us.updatecar(car).subscribe()
+  this.us.updatecart(car).subscribe()
     let c=++this.cartcount
       this.cs.setCartcount(c)
       console.log("for plus",this.cartcount)
@@ -138,6 +117,6 @@ plus(car:any){
 
 }
 onSubmit(){
-  this.route.navigateByUrl("/payment")
+  this.route.navigateByUrl("/userdashboard/payment")
 }
 }

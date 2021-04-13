@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartserviceService {
 
-  constructor() { }
+  constructor() {}
 x=0;
 
 private cartcount: BehaviorSubject<any>=new BehaviorSubject(this.x)

@@ -21,17 +21,13 @@ carobj:any
   onSubmit(ref:any)
   {
       this.us.updatecar(this.carobj).subscribe()
-      console.log("hello")
+      this.toast.success("your changes has been saved successfully")
+      this.route.navigateByUrl("/allcarsaddedbyadmin")
   }
   Cancelupdate(){
-
+     this.toast.info("No changes are made")
      this.route.navigateByUrl("/allcarsaddedbyadmin")
 
   }
-  Save(){
-        this.toast.success("your changes has been saved successfully")
-        this.route.navigateByUrl("/allcarsaddedbyadmin")
-        this.us.updatecarafteredit(this.carobj).subscribe()
 
-  }
 }

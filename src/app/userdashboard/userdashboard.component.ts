@@ -62,6 +62,7 @@ export class UserdashboardComponent implements OnInit {
     }
     logout()
     {
+            localStorage.clear()
             this.route.navigateByUrl("/home")
     }
     

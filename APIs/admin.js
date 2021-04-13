@@ -38,34 +38,38 @@ const storage = new CloudinaryStorage({
   req.body=JSON.parse(req.body.productobj)
   req.body.image=req.file.path;
   let productobj=req.body      
-  console.log(req.body)
+  console.log("req.body",req.body)
  //insert 
- 
- let Admin = await new admin({
-  carid:req.body.carid,
-  cartype:req.body.cartype,
-  carname:req.body.carname,
-  carcolour:req.body.carcolour,
-  numberofseats:req.body.numberofseats,
-  enginetype:req.body.enginetype,
-  fueltype:req.body.fueltype,
-  fueltankcapacity:req.body.fueltankcapacity,
-  overalllength:req.body.overalllength,
-  overallwidth:req.body.overallwidth,
-  overallheight:req.body.overallheight,
-  wheelbase:req.body.wheelbase,
-  tyresize:req.body.tyresize,
-  tyretype:req.body.tyretype,
-  carprice:req.body.carprice,
-  status:req.body.status,
-  carimage:req.body.image
+ let success = await admin.findOne({carid:req.body.carid})
+ console.log("success",success)
+ if(success==null){
+  let Admin = await new admin({
+    carid:req.body.carid,
+    cartype:req.body.cartype,
+    carname:req.body.carname,
+    carcolour:req.body.carcolour,
+    numberofseats:req.body.numberofseats,
+    enginetype:req.body.enginetype,
+    fueltype:req.body.fueltype,
+    fueltankcapacity:req.body.fueltankcapacity,
+    overalllength:req.body.overalllength,
+    overallwidth:req.body.overallwidth,
+    overallheight:req.body.overallheight,
+    wheelbase:req.body.wheelbase,
+    tyresize:req.body.tyresize,
+    tyretype:req.body.tyretype,
+    carprice:req.body.carprice,
+    status:req.body.status,
+    carimage:req.body.image
+  })
+  await Admin.save();
   
+  res.send({message:"car added successfully"})
+ }
+ else{
+   res.send({message:"car id already exists ... choose other id"})
+ }
  
-
-})
-await Admin.save();
-
-res.send({message:"car added successfully"})
  })))
  
 // get all cars
@@ -84,29 +88,21 @@ adminApiObj.get("/getcar/:carname",eah(async (req,res)=>{
 }))
 
 adminApiObj.put("/updatecar",eah(async (req,res)=>{
- 
-  let success=await admin.updateOne({carname:req.body.carname},{cartype:req.body.cartype,
-  carcolour:req.body.carcolour,numberofseats:req.body.numberofseats,
-  overalllength:req.body.overalllength,overallheight:req.body.overallheight})
+ console.log(req.body)
+  let success=await admin.updateOne({carid:req.body.carid},{cartype:req.body.cartype,
+    carname:req.body.carname,carcolour:req.body.carcolour,numberofseats:req.body.numberofseats,
+  overalllength:req.body.overalllength,overallheight:req.body.overallheight,carprice:req.body.carprice})
   console.log("success",success)
   res.send({message:"updated successfully"})
 
 }))
 
 
-adminApiObj.put("/updatecarafteredit",eah(async (req,res)=>{
- 
-  let success=await admin.updateOne({carname:req.body.carname},{cartype:req.body.cartype,
-  carcolour:req.body.carcolour,numberofseats:req.body.numberofseats,
-  overalllength:req.body.overalllength,overallheight:req.body.overallheight})
-  console.log("success",success)
-  res.send({message:"updated successfully"})
 
-}))
 adminApiObj.put("/updatestatus",eah(async (req,res)=>{
   
    let success=await admin.updateOne({carid:req.body.carid},{status:req.body.status})
-   console.log("status update",success)
+  //console.log("status update",success)
    res.send({message:"updated successfully"})
  
  }))
@@ -115,26 +111,26 @@ adminApiObj.put("/updatestatus",eah(async (req,res)=>{
 
 adminApiObj.get("/gethatchback/:cartype",eah(async(req,res)=>{
   
-  console.log("cartype",req.params.cartype)
+ // console.log("cartype",req.params.cartype)
     let cartype= await admin.find({$and:[{cartype:req.params.cartype},{status:true}]})
-    console.log("cartype:",cartype)
+   // console.log("cartype:",cartype)
     res.send({message:cartype})
    
   }))
   adminApiObj.get("/getsuv/:cartype",eah(async(req,res)=>{
     
-    console.log("cartype",req.params.cartype)
+    //console.log("cartype",req.params.cartype)
       let cartype= await admin.find({$and:[{cartype:req.params.cartype},{status:true}]})
-      console.log("cartype:",cartype)
+      //console.log("cartype:",cartype)
       res.send({message:cartype})
      
     }))
   
   adminApiObj.get("/getsedan/:cartype",eah(async(req,res)=>{
     
-      console.log("cartype",req.params.cartype)
+      //console.log("cartype",req.params.cartype)
         let cartype= await admin.find({$and:[{cartype:req.params.cartype},{status:true}]})
-        console.log("cartype:",cartype)
+        //console.log("cartype:",cartype)
         res.send({message:cartype})
        
   }))

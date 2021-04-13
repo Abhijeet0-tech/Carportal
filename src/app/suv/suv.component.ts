@@ -11,6 +11,7 @@ import { UserserviceService } from '../userservice.service';
 export class SuvComponent implements OnInit {
 
   userobj:any
+  emptysuv:any
   username:any
   carobj:any=[]
   searchTerm!: string;
@@ -28,6 +29,7 @@ export class SuvComponent implements OnInit {
                 this.us.getsuv().subscribe(
                   res=>{
                     this.carobj=res["message"]
+                    this.emptysuv=this.carobj.length
                   },
                   err=>{
                     alert("retrive failed")
