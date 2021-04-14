@@ -23,28 +23,13 @@ hatchbackcars:any=[]
   ngOnInit(): void {
     this.username=(localStorage.getItem("username"))
     this.username=(localStorage.getItem("username"))
-    this.us.getuserbyusername(this.username).subscribe(
+    this.us.gethatchback().subscribe(
       res=>{
-        if(res["message"]=="success"){
-          this.userobj=res["userobj"]
-          this.us.gethatchback().subscribe(
-            res=>{
-              this.carobj=res["message"]
-              this.emptyhatchback=this.carobj.length
-            },
-            err=>{
-              alert("retrive failed")
-              console.log(err)
-            }
-          )
-        }
-        else{
-          alert(res["message"])
-          this.route.navigateByUrl("/login")
-        }
+        this.carobj=res["message"]
+        this.emptyhatchback=this.carobj.length
       },
       err=>{
-        alert("something went wrong")
+        this.toast.error("Retrive failed")
         console.log(err)
       }
     )

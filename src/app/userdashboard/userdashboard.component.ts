@@ -31,13 +31,13 @@ export class UserdashboardComponent implements OnInit {
                     this.carobj=res["message"]
                   },
                   err=>{
-                    alert("retrive failed")
+                    this.toast.error("Retrive failed")
                     console.log(err)
                   }
                 )
               }
               else{
-                alert(res["message"])
+                this.toast.warning("Unauthorized access")
                 this.route.navigateByUrl("/login")
               }
             },

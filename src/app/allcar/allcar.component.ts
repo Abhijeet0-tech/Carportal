@@ -16,6 +16,7 @@ export class AllcarComponent implements OnInit {
   this.us.getcar().subscribe(
     res=>{
       this.carobj=res["message"]
+      console.log(this.carobj)
     },
     err=>{
       alert("retrive failed")

@@ -218,5 +218,9 @@ private valueofX1:BehaviorSubject<any>=new BehaviorSubject(this.x1)
     this.valueofX1.next(this.x1--)
     console.log("x value",this.x1)
   }
+  getadminbyusername(adminobj:any):Observable<any>{
+    console.log("userlogin",adminobj)
+    return this.hc.get("adminlogin/getadminlogin/"+adminobj)
+  }
 
 }

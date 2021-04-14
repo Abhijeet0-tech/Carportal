@@ -7,6 +7,7 @@ const eah=require("express-async-handler")
 adminApiObj.use(exp.json())
 
 const admin=require("../models/adminschema")
+const verify= require("./token/verifytoken")
 
  
 //config cloudinary
@@ -75,6 +76,7 @@ const storage = new CloudinaryStorage({
 // get all cars
 adminApiObj.get("/getcars",eah(async (req,res)=>{
   let carobj= await admin.find({status:true})
+  console.log("carobj",carobj)
   res.send({message:carobj})
 }))
 
@@ -99,7 +101,7 @@ adminApiObj.put("/updatecar",eah(async (req,res)=>{
 
 
 
-adminApiObj.put("/updatestatus",eah(async (req,res)=>{
+adminApiObj.put("/updatestatus",verify,eah(async (req,res)=>{
   
    let success=await admin.updateOne({carid:req.body.carid},{status:req.body.status})
   //console.log("status update",success)
@@ -109,7 +111,7 @@ adminApiObj.put("/updatestatus",eah(async (req,res)=>{
 
 
 
-adminApiObj.get("/gethatchback/:cartype",eah(async(req,res)=>{
+adminApiObj.get("/gethatchback/:cartype",verify,eah(async(req,res)=>{
   
  // console.log("cartype",req.params.cartype)
     let cartype= await admin.find({$and:[{cartype:req.params.cartype},{status:true}]})
@@ -117,7 +119,7 @@ adminApiObj.get("/gethatchback/:cartype",eah(async(req,res)=>{
     res.send({message:cartype})
    
   }))
-  adminApiObj.get("/getsuv/:cartype",eah(async(req,res)=>{
+  adminApiObj.get("/getsuv/:cartype",verify,eah(async(req,res)=>{
     
     //console.log("cartype",req.params.cartype)
       let cartype= await admin.find({$and:[{cartype:req.params.cartype},{status:true}]})
@@ -126,7 +128,7 @@ adminApiObj.get("/gethatchback/:cartype",eah(async(req,res)=>{
      
     }))
   
-  adminApiObj.get("/getsedan/:cartype",eah(async(req,res)=>{
+  adminApiObj.get("/getsedan/:cartype",verify,eah(async(req,res)=>{
     
       //console.log("cartype",req.params.cartype)
         let cartype= await admin.find({$and:[{cartype:req.params.cartype},{status:true}]})

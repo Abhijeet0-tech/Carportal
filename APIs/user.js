@@ -20,9 +20,6 @@ const { updateOne, update } = require("../models/userschema");
 userApiObj.post("/createuser",eah( async(req,res)=>{
    
     console.log(req.body)
-
-  
-    
     let userobj = await User.findOne({username:req.body.username})
     if(userobj==null){
         let hashedPassword=await bcryptjs.hash(req.body.password,7)
@@ -71,7 +68,6 @@ userApiObj.post("/loginuser",eah(async(req,res)=>{
      }
      else
      {
-        
          res.send({message:"user credentials are wrong"})
      }
 }))

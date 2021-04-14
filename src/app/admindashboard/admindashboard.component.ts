@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserserviceService } from '../userservice.service';
 
 @Component({
@@ -9,16 +10,34 @@ import { UserserviceService } from '../userservice.service';
 })
 export class AdmindashboardComponent implements OnInit {
 
- 
-  constructor(private route:Router) { }
+ username:any
+ adminobj:any
+  constructor(private route:Router, private toast:ToastrService,private us:UserserviceService) { }
   
   ngOnInit(): void {
-  
-}
+    this.username=localStorage.getItem("username")
+    this.us.getadminbyusername(this.username).subscribe(
+      res=>{
+        if(res["message"]=="success"){
+          this.adminobj=res["message"]
+          
+        }
+        else{
+          this.toast.error("Session expired...Login again")
+          localStorage.clear()
+          this.route.navigateByUrl("/login")
+        }
+      },
+      err=>{
+        this.toast.error("Session expired...Login again")
+        localStorage.clear()
+        console.log(err)
+      }
+    )
+  }
+
 logout(){
    localStorage.clear()
    this.route.navigateByUrl("/login")
 }
-
-
 }
