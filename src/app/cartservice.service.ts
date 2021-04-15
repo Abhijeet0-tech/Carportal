@@ -12,7 +12,7 @@ x=0;
 private cartcount: BehaviorSubject<any>=new BehaviorSubject(this.x)
 
 setCartcount(cartcount:any){
-  console.log(cartcount)
+  console.log("kk",cartcount)
        this.cartcount.next(cartcount)
 
 }

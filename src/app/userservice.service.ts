@@ -92,7 +92,7 @@ updatestatus(carobj:any):Observable<any>{
 }
 
 getuserbyusername(userobj:any):Observable<any>{
-  console.log(userobj)
+  //console.log(userobj)
   return this.hc.get("user/getuser/"+userobj)
 }
 
@@ -102,14 +102,7 @@ addToCart(car:any):Observable<any>{
   return this.hc.post("/usercart/addtocart",car)
 }
 
-getusernameforcart(username:any){
-  console.log(this.username)
-this.username=username
-}
 
-sendusernameforcart(){
-  return this.username
-}
 
 getUsercartcars(usernameforcart:any):Observable<any>{
      console.log(usernameforcart)
@@ -172,7 +165,7 @@ updateCartCountfromusercart(username:any):Observable<any>{
 
 // get hatchback cars
 gethatchback():Observable<any>{
-  console.log("hello")
+  //console.log("hello")
   return this.hc.get("/admin/gethatchback/"+this.hatchback)
 }
 getsuv():Observable<any>{
@@ -192,7 +185,7 @@ storePaymentData(payment:any):Observable<any>{
 
 // get cart count
 getCartCount(userobj:any):Observable<any>{
-  console.log("username",userobj)
+  //console.log("username",userobj)
   return this.hc.get("/usercart/getcartcount/"+userobj)
 }
 

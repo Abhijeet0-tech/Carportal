@@ -33,8 +33,9 @@ export class SuvComponent implements OnInit {
               console.log(err)
             }
           )
-          this.cartcount=this.cs.getCartcount()
-    }
+          this.cs.getCartcount().subscribe(cartcount=>this.cartcount=cartcount)
+          console.log("hatchback count",this.cartcount)
+                }
 
     logout()
     {
@@ -59,7 +60,6 @@ export class SuvComponent implements OnInit {
         }
 
       )
-      this.us.getusernameforcart(this.username)
     
     }
     cart(){

@@ -77,11 +77,9 @@ userApiObj.post("/loginuser",eah(async(req,res)=>{
 userApiObj.get("/getuser/:username",verify,eah(async(req,res,next)=>{
     
     let user= await  User.findOne({username:req.params.username})
-    console.log(user)
+  //  console.log(user)
 
     // remove password from userobject
-    delete user.password
-
     res.send({message:"success",userobj:user})
 }))
 

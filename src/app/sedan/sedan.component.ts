@@ -33,8 +33,8 @@ export class SedanComponent implements OnInit {
           console.log(err)
         }
       )
-      this.cartcount=this.cs.getCartcount()
-    
+      this.cs.getCartcount().subscribe(cartcount=>this.cartcount=cartcount)
+    console.log("hatchback count",this.cartcount)
     }
     logout()
     {
@@ -58,9 +58,7 @@ export class SedanComponent implements OnInit {
              this.toast.error(err)
         }
 
-      )
-      this.us.getusernameforcart(this.username)
-    
+      ) 
     }
     cart(){
       this.route.navigateByUrl("addtoCart")

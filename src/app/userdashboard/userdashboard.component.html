@@ -6,30 +6,23 @@
           <div class="col-sm-4">
             <ul class="nav">
               <li class="nav-item" >
-                <a class="nav-link" style="color:#3c0547;font-size: 22px; font-weight: bold;" routerLink="/usercart">
+                <a class="nav-link" style="color:#3c0547;font-size: 22px; font-weight: bold;"
+                 routerLink="/userdashboard/usercart">
                   Welcome {{username}}
                 </a>
               </li>
               </ul>
           </div>        
           <div class="col-sm-4">
-            <ul class="nav">
-              <li class="nav-item" >
-                <a class="nav-link " style="color:#165baa;font-size: 22px; font-weight: bold;" 
-                routerLink="/userdashboard/hatchback">Hatchback</a>
-              </li>
-              <li class="nav-item" >
-                <a class="nav-link" style="color:#165baa;font-size: 22px; font-weight: bold;" 
-                routerLink="/userdashboard/SUV">SUV</a>
-              </li>
-              <li class="nav-item" >
-                <a class="nav-link" style="color:#165baa;font-size: 22px; font-weight: bold;" 
-                routerLink="/userdashboard/Sedan">Sedan</a>
-              </li>
-            </ul>          
           </div>        
           <div class="col-sm-4">
               <ul class="nav justify-content-end" >
+                <li class="nav-item" >
+                  <a class="nav-link" style="color:#3c0547;font-size: 22px; font-weight: bold;"
+                   routerLink="/userdashboard/allmodels">
+                    All car models
+                  </a>
+                </li>
                 <li class="nav-item" >
                   <a class="nav-link" style="color:#165baa;font-size: 22px; font-weight: bold;" (click)="cart()">
                     <i class="fa fa-shopping-cart"><sup>{{cartcount}}</sup></i></a>
@@ -47,7 +40,7 @@
          </div>
         
 
-
+         
 
 
   <router-outlet></router-outlet>

@@ -59,15 +59,14 @@ emptycart:any
              res=>{
             if(res["message"]=="success"){
                this.usercartallcars=res["carsarray"]
-
-               console.log(this.usercartallcars)
+               this.cartcount=this.cartcount-car.quantity
                console.log(this.cartcount)
-                this.cs.setCartcount(--this.cartcount)
-                
-               this.sum=0
+                this.cs.setCartcount(this.cartcount)
+              this.sum=0
                for(this.i=0;this.i<this.usercartallcars.length;this.i++){
                 this.sum =  this.sum+this.usercartallcars[this.i].carprice
                 console.log(this.sum)
+
           }
             }
             else{
@@ -86,7 +85,7 @@ emptycart:any
       car.quantity--
       car.carprice=(car.quantity*car.carprice)
       console.log("for minus",this.cartcount)
-      this.cs.setCartcount(this.cartcount--)
+      this.cs.setCartcount(--this.cartcount)
     }
     this.us.updatecart(car).subscribe()
     this.sum=0

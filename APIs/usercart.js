@@ -102,7 +102,7 @@ usercartApiObj.get("/getcartcount/:username",eah(async(req,res)=>{
     //console.log("cartcars for cart count",success)
     let carsarray=[]
     for(i=0;i<success.length;i++){
-         let success1= await Admincart.findOne({$and:[{carid:success[i].carid},{status:true}]})
+         let success1 = await Admincart.findOne({$and:[{carid:success[i].carid},{status:true}]})
          
          if(success1!=null)
          {

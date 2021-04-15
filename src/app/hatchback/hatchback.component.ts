@@ -33,8 +33,10 @@ hatchbackcars:any=[]
         console.log(err)
       }
     )
-    this.cartcount=this.cs.getCartcount()
-}
+    this.cs.getCartcount().subscribe(cartcount=>this.cartcount=cartcount)
+    console.log("hatchback count",this.cartcount)
+  }
+
 
 logout()
 {
@@ -59,7 +61,6 @@ this.us.addToCart(car).subscribe(
   }
 
 )
-this.us.getusernameforcart(this.username)
 
 }
 cart(){

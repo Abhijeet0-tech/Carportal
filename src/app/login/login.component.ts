@@ -42,8 +42,8 @@ submitted:any=false
                 localStorage.setItem("token",res["token"])
                 localStorage.setItem("username",res["username"])
                 this.toastr.success('you have succesfully logged')
-                this.us.senduserdashboard(this.registerForm.value.username)
-                this.route.navigateByUrl("/userdashboard")
+               // this.us.senduserdashboard(this.registerForm.value.username)
+                this.route.navigateByUrl("/userdashboard/allmodels")
               }
               else{
                 this.toastr.error('your credentials are wrong')
